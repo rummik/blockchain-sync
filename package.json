@@ -1,0 +1,21 @@
+{
+  "name": "blockchain-sync",
+  "version": "1.0.0",
+  "description": "Tool to handle syncing Mastodon instance blocks with the BLOCKchain list",
+  "main": "index.js",
+  "scripts": {
+    "sync": "node ./index.js"
+  },
+  "repository": "https://gitlab.com/chameleoid/awoo.pub/blockchain-sync",
+  "author": "*Kim Zick (rummik) <k@9k1.us>",
+  "license": "MPL-2",
+  "private": true,
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "file-cookie-store": "^0.2.1",
+    "form-data": "^2.3.3",
+    "got": "^9.5.0",
+    "inquirer": "^6.2.1",
+    "tough-cookie": "^2.5.0"
+  }
+}

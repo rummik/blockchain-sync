@@ -1,0 +1,5 @@
+{
+  "instance": "<your instance url>",
+  "email": "<admin email>",
+  "password": "<admin password>"
+}

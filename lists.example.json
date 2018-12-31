@@ -1,0 +1,59 @@
+/*
+ * Lists:
+ *   See: https://github.com/dzuk-mutant/blockchain/blob/master/list/json-list.md
+ *        https://github.com/dzuk-mutant/blockchain/blob/master/list/list.md
+ *
+ *   - `abuse` - Harrassment and direct abuse to other users
+ *   - `advertising`
+ *   - `corporate` - Corporate-owned instances
+ *   - `dct` - Dangerous conspiracy theories
+ *   - `hostile` - Other hostile admin conduct
+ *   - `security-risk`
+ *   - `spam`
+ *   - `ums` - Unwilling to moderate hate speech and violent speech
+ *   - `underage-porn` - Illustrated sexualised depictions of people who appear to be minors
+ *   - `vsz` - Violent speech space
+ *
+ *
+ * Actions:
+ *   See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation
+ *
+ *   - `suspend` - Completely blocks communication with users on the instance.
+ *   - `silence` - Will not display content on the public timeline, but users can be followed.
+ *
+ *
+ * Reject:
+ *   See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation
+ *
+ *   - `media` - This includes avatars, headers, emoji, and media attachments.
+ *   - `reports` - Reject moderation reports.
+ */
+
+{
+  "includes": [
+    "https://github.com/dzuk-mutant/blockchain/blob/master/list/list.json"
+  ],
+
+  "settings": [
+    {
+      "lists": [ "corporate" ],
+      "action": "silence",
+      "reject": [ "reports" ]
+    },
+
+    {
+      "lists": [
+        "abuse",
+        "advertising",
+        "dct",
+        "hostile",
+        "security-risk",
+        "spam",
+        "ums",
+        "underage-porn",
+        "vsz"
+      ],
+      "action": "suspend"
+    }
+  ]
+}
