@@ -14,7 +14,7 @@ _This has only been tested with Mastodon 2.6.5_
 - Yarn
 
 ## Quickstart
-- Clone `git clone https://github.com/rummik/blockchain-sync.git`
+- Clone `git clone https://gitlab.com/chameleoid/awoo.pub/blockchain-sync.git`
 - Copy `lists.example.json` to `lists.json` and edit to your liking
 - Copy `login.example.json` to `login.json` and add your login info
   - Yes, it's kludgy, expect this to change when Admin APIs are available
