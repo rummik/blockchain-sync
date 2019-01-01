@@ -35,7 +35,7 @@ let domains = {};
       });
     });
 
-    blocks.forEach(({ domain, reasons }) => {
+    blocks.filter(({ domain }) => !!domain).forEach(({ domain, reasons }) => {
       domains[domain] = reasons.map(reason => actions[reason.toLowerCase()]).reduce(
         (a, b) => (a.severity === 'suspend' || a.reject.length > b.reject.length) ? a : b,
       );
