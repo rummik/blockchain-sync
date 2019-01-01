@@ -3,7 +3,10 @@ BLOCKchain Sync
 A hastily thrown together tool to handle syncing Mastodon instance blocks with
 the instances listed in the [BLOCKchain][].
 
-- 2fa is supported
+Features:
+- 2fa support
+- Updates existing domains if needed
+- Support for multiple block list JSON sources
 
 _This has only been tested with Mastodon 2.6.5_
 
@@ -11,15 +14,15 @@ _This has only been tested with Mastodon 2.6.5_
 
 ## Requirements
 - Node.js >= 9
-- Yarn
+- Yarn / NPM
 
 ## Quickstart
 - Clone `git clone https://gitlab.com/chameleoid/awoo.pub/blockchain-sync.git`
 - Copy `lists.example.json` to `lists.json` and edit to your liking
 - Copy `login.example.json` to `login.json` and add your login info
   - Yes, it's kludgy, expect this to change when Admin APIs are available
-- Run `yarn install`
-- Run `yarn run sync`
+- Run `yarn install` or `npm install`
+- Run `yarn run sync` or `npm run sync`
 
 ## Contributing
 Contributions welcome!
