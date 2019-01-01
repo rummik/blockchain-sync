@@ -41,8 +41,7 @@
   "actions": [
     {
       "lists": [ "corporate" ],
-      "action": "silence",
-      "reject": [ "reports" ]
+      "action": "silence"
     },
 
     {
@@ -57,7 +56,8 @@
         "underage-porn",
         "vsz"
       ],
-      "action": "suspend"
+      "action": "suspend",
+      "reject": [ "media", "reports" ]
     }
   ]
 }
