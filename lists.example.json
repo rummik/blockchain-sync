@@ -1,34 +1,3 @@
-/*
- * Lists:
- *   See: https://github.com/dzuk-mutant/blockchain/blob/master/list/json-list.md
- *        https://github.com/dzuk-mutant/blockchain/blob/master/list/list.md
- *
- *   - `abuse` - Harrassment and direct abuse to other users
- *   - `advertising`
- *   - `corporate` - Corporate-owned instances
- *   - `dct` - Dangerous conspiracy theories
- *   - `hostile` - Other hostile admin conduct
- *   - `security-risk`
- *   - `spam`
- *   - `ums` - Unwilling to moderate hate speech and violent speech
- *   - `underage-porn` - Illustrated sexualised depictions of people who appear to be minors
- *   - `vsz` - Violent speech space
- *
- *
- * Actions:
- *   See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation
- *
- *   - `suspend` - Completely blocks communication with users on the instance.
- *   - `silence` - Will not display content on the public timeline, but users can be followed.
- *
- *
- * Reject:
- *   See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation
- *
- *   - `media` - This includes avatars, headers, emoji, and media attachments.
- *   - `reports` - Reject moderation reports.
- */
-
 {
   "//": "URLs of JSON lists to include blocks from",
   "includes": [
@@ -37,21 +6,62 @@
 
   "//": "Local block list",
   "blocklist": [
+    {
+      "//": "The instance's domain name",
+      "domain": "example.com",
+
+      "//": "Reasons lists this instance should be included in for taking action",
+      "reasons": [ "spam" ]
+    },
+
     { "domain": "example.com", "reasons": [ "spam" ] }
   ],
 
   "//": "Actions to be taken on instances in a set of reason lists",
-  "//": "Consult the block lists you include to determine which lists are availanle",
+  "//": "Consult the block lists you include to determine which lists are available",
   "actions": [
     {
-      "reasons": [ "corporate" ],
+      "//": "Reasons lists this action should be applied to",
+      "//": "(taken from https://github.com/dzuk-mutant/blockchain/blob/master/list/json-list.md)",
+      "//": "  `abuse` - Harrassment and direct abuse to other users",
+      "//": "  `advertising` - Primarily owned or used by corporations to advertise or post product updates",
+      "//": "  `corporate` - Corporate-owned instances",
+      "//": "  `dct` - Dangerous conspiracy theories",
+      "//": "  `hostile` - Other hostile admin conduct",
+      "//": "  `security-risk` - Compromises the privacy/broadcast levels of posts",
+      "//": "  `spam` - Primarily used for spam bots",
+      "//": "  `ums` - Unwilling to moderate hate speech and violent speech",
+      "//": "  `underage-porn` - Illustrated sexualised depictions of people who appear to be minors",
+      "//": "  `vsz` - Violent speech space",
+      "reasons": [ "spam" ],
+
+
+      "//": "Severity of action to be taken",
+      "//": "See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation",
+      "//": "  `suspend` - Block communication with users on the instance",
+      "//": "  `silence` - Do not display posts on the public timeline",
+      "severity": "silence",
+
+
+      "//": "Rejections list (optional)",
+      "//": "See: https://docs.joinmastodon.org/usage/moderation/#server-wide-moderation",
+      "//": "  `media` - Reject media attachments, avatars, headers, emoji",
+      "//": "  `reports` - Reject moderation reports from users",
+      "reject": [ "media", "reports" ]
+    },
+
+    {
+      "reasons": [
+        "corporate",
+        "advertising"
+      ],
+
       "severity": "silence"
     },
 
     {
       "reasons": [
         "abuse",
-        "advertising",
         "dct",
         "hostile",
         "security-risk",
@@ -60,8 +70,8 @@
         "underage-porn",
         "vsz"
       ],
-      "severity": "suspend",
-      "reject": [ "media", "reports" ]
+
+      "severity": "suspend"
     }
   ]
 }
