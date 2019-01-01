@@ -30,22 +30,26 @@
  */
 
 {
+  "//": "URLs of JSON lists to include blocks from",
   "includes": [
     "https://github.com/dzuk-mutant/blockchain/blob/master/list/list.json"
   ],
 
-  "blocks": [
+  "//": "Local block list",
+  "blocklist": [
     { "domain": "example.com", "reasons": [ "spam" ] }
   ],
 
+  "//": "Actions to be taken on instances in a set of reason lists",
+  "//": "Consult the block lists you include to determine which lists are availanle",
   "actions": [
     {
-      "lists": [ "corporate" ],
-      "action": "silence"
+      "reasons": [ "corporate" ],
+      "severity": "silence"
     },
 
     {
-      "lists": [
+      "reasons": [
         "abuse",
         "advertising",
         "dct",
@@ -56,7 +60,7 @@
         "underage-porn",
         "vsz"
       ],
-      "action": "suspend",
+      "severity": "suspend",
       "reject": [ "media", "reports" ]
     }
   ]

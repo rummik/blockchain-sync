@@ -23,21 +23,21 @@ let domains = {};
   // Build domain block list
   {
     let includes = await Promise.all(lists.includes.map(url => got(url).then(res => JSON.parse(res.body))));
-    let blocks = includes.reduce((a, b) => a.concat(b.block), lists.blocks || []);
+    let blocks = includes.reduce((a, b) => a.concat(b.block), lists.blocklist || []);
     let actions = {};
 
-    lists.actions.forEach(({ reasons, action, reject = [] }) => {
+    lists.actions.forEach(({ reasons, severity, reject = [] }) => {
       reasons.forEach(reason => {
         actions[reason] = {
-          action,
-          reject: action === 'suspend' ? [ 'media', 'reports' ] : reject.sort(),
+          severity,
+          reject: severity === 'suspend' ? [ 'media', 'reports' ] : reject.sort(),
       }
       });
     });
 
     blocks.forEach(({ domain, reasons }) => {
       domains[domain] = reasons.map(reason => actions[reason.toLowerCase()]).reduce(
-        (a, b) => (a.action === 'suspend' || a.reject.length > b.reject.length) ? a : b,
+        (a, b) => (a.severity === 'suspend' || a.reject.length > b.reject.length) ? a : b,
       );
     });
   }
@@ -97,7 +97,7 @@ let domains = {};
         let id = $row.find('a').attr('href').match(/\d+/)[0];
 
         let data = {
-          action: $row.find('[class=severity]').text().trim().toLowerCase(),
+          severity: $row.find('[class=severity]').text().trim().toLowerCase(),
           reject: [].concat(
             $row.find('[class=reject_media] i').length ? [ 'media' ] : [],
             $row.find('[class=reject_reports] i').length ? [ 'reports' ] : [],
@@ -121,7 +121,7 @@ let domains = {};
 
       addForm.append('authenticity_token', $('[name=authenticity_token]').val());
       addForm.append('domain_block[domain]', domain);
-      addForm.append('domain_block[severity]', data.action);
+      addForm.append('domain_block[severity]', data.severity);
       addForm.append('domain_block[reject_media]', data.reject.indexOf('media') === -1 ? 0 : 1);
       addForm.append('domain_block[reject_reports]', data.reject.indexOf('reports') === -1 ? 0 : 1);
 
