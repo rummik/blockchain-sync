@@ -30,7 +30,7 @@ let domains = {};
       reasons.forEach(reason => {
         actions[reason] = {
           action,
-          reject: action === 'suspend' ? [ 'media', 'reports' ] : reject,
+          reject: action === 'suspend' ? [ 'media', 'reports' ] : reject.sort(),
       }
       });
     });
