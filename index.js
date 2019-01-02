@@ -23,7 +23,7 @@ let domains = {};
   // Build domain block list
   {
     let includes = await Promise.all(lists.includes.map(url => got(url).then(res => JSON.parse(res.body))));
-    let blocks = includes.reduce((a, b) => a.concat(b.block), lists.blocklist || []);
+    let blocks = includes.reduce((a, b) => a.concat(b.block), []).concat(lists.blocklist);
     let actions = {};
 
     lists.actions.forEach(({ reasons, severity, reject = [] }) => {
