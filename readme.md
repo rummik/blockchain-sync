@@ -46,6 +46,14 @@ Contributions welcome!
     }
   ],
 
+  "//": "List of domains that should never be blocked",
+  "allowlist": [
+    {
+      "//": "The instance's domain name",
+      "domain": "example.com"
+    }
+  ],
+
   "//": "Actions to be taken on instances in a set of reason lists",
   "//": "Consult the block lists you include to determine which lists are available",
   "actions": [
@@ -93,6 +101,11 @@ Contributions welcome!
   "//": "Local block list",
   "blocklist": [
     { "domain": "example.com", "reasons": [ "spam" ] }
+  ],
+
+  "//": "List of domains that should never be blocked",
+  "allowlist": [
+    { "domain": "example.com" }
   ],
 
   "//": "Actions to be taken on instances in a set of reason lists",

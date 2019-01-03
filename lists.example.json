@@ -17,6 +17,16 @@
     { "domain": "example.com", "reasons": [ "spam" ] }
   ],
 
+  "//": "List of domains that should never be blocked",
+  "allowlist": [
+    {
+      "//": "The instance's domain name",
+      "domain": "example.com"
+    },
+
+    { "domain": "example.com" }
+  ],
+
   "//": "Actions to be taken on instances in a set of reason lists",
   "//": "Consult the block lists you include to determine which lists are available",
   "actions": [
