@@ -30,12 +30,12 @@ Contributions welcome!
 ## Configuring
 ```json
 {
-  "//": "URLs of JSON lists to include blocks from",
+  "//": "URLs of JSON lists to include `blocks`/`blocklist` data from",
   "includes": [
     "https://github.com/dzuk-mutant/blockchain/blob/master/list/list.json"
   ],
 
-  "//": "Local block list",
+  "//": "Local list of instances that should be blocked",
   "blocklist": [
     {
       "//": "The instance's domain name",
@@ -46,7 +46,7 @@ Contributions welcome!
     }
   ],
 
-  "//": "List of domains that should never be blocked",
+  "//": "List of instances that should never be blocked",
   "allowlist": [
     {
       "//": "The instance's domain name",
@@ -93,17 +93,17 @@ Contributions welcome!
 ### Configuration examples
 ```json
 {
-  "//": "URLs of JSON lists to include blocks from",
+  "//": "URLs of JSON lists to include `blocks`/`blocklist` data from",
   "includes": [
     "https://github.com/dzuk-mutant/blockchain/blob/master/list/list.json"
   ],
 
-  "//": "Local block list",
+  "//": "Local list of instances that should be blocked",
   "blocklist": [
     { "domain": "example.com", "reasons": [ "spam" ] }
   ],
 
-  "//": "List of domains that should never be blocked",
+  "//": "List of instances that should never be blocked",
   "allowlist": [
     { "domain": "example.com" }
   ],

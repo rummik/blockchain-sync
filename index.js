@@ -24,7 +24,7 @@ let allowlist = {};
   // Build domain block list
   {
     let includes = await Promise.all(config.includes.map(url => got(url).then(res => JSON.parse(res.body))));
-    let blocks = includes.reduce((a, b) => a.concat(b.block), []).concat(config.blocklist);
+    let blocks = includes.reduce((a, b) => a.concat(b.block || b.blocklist), []).concat(config.blocklist);
     let allows = config.allowlist || [];
     let actions = {};
 
