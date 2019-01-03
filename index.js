@@ -62,7 +62,7 @@ let allowlist = {};
     response = await got(instance, { cookieJar });
     $ = cheerio.load(response.body);
 
-    if (/Log in/.test(response.body)) {
+    if ($('a[href="/auth/log_in"]').length) {
       loginForm.append('user[email]', auth.email);
       loginForm.append('user[password]', auth.password);
       loginForm.append('authenticity_token', $('[name=authenticity_token]').val());
