@@ -54,9 +54,10 @@ Contributions welcome!
     }
   ],
 
-  "//": "Actions to be taken on instances in a set of reason lists",
+  "//": "Filters to be applied to instances in a set of reason lists",
+  "//": "If an instance is captured by multiple filters, the most severe filter is used",
   "//": "Consult the block lists you include to determine which lists are available",
-  "actions": [
+  "filters": [
     {
       "//": "Reasons lists this action should be applied to",
       "//": "(taken from https://github.com/dzuk-mutant/blockchain/blob/master/list/json-list.md)",
@@ -108,9 +109,10 @@ Contributions welcome!
     { "domain": "example.com" }
   ],
 
-  "//": "Actions to be taken on instances in a set of reason lists",
+  "//": "Filters to be applied to instances in a set of reason lists",
+  "//": "If an instance is captured by multiple filters, the most severe filter is used",
   "//": "Consult the block lists you include to determine which lists are available",
-  "actions": [
+  "filters": [
     {
       "reasons": [
         "corporate",

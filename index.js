@@ -26,23 +26,27 @@ let allowlist = {};
     let includes = await Promise.all(config.includes.map(url => got(url).then(res => JSON.parse(res.body))));
     let blocks = includes.reduce((a, b) => a.concat(b.block || b.blocklist), []).concat(config.blocklist);
     let allows = config.allowlist || [];
-    let actions = {};
+    let filters = {};
 
-    config.actions.forEach(({ reasons, severity, reject = [] }) => {
+    // Create filters map
+    config.filters.forEach(({ reasons, severity, reject = [] }) => {
       reasons.forEach(reason => {
-        actions[reason] = {
+        filters[reason] = {
           severity,
           reject: severity === 'suspend' ? [ 'media', 'reports' ] : reject.sort(),
         };
       });
     });
 
+    // Build finalized block list
     blocks.filter(({ domain }) => !!domain).forEach(({ domain, reasons }) => {
-      blocklist[domain] = reasons.map(reason => actions[reason.toLowerCase()]).reduce(
+      // Filters with the most severe action should take precedence
+      blocklist[domain] = reasons.map(reason => filters[reason.toLowerCase()]).reduce(
         (a, b) => (a.severity === 'suspend' || a.reject.length > b.reject.length) ? a : b,
       );
     });
 
+    // Build allowlist
     allows.filter(({ domain }) => !!domain).forEach(({ domain }) => {
       allowlist[domain] = true;
     });
@@ -93,7 +97,7 @@ let allowlist = {};
     let current = {};
     let page = 1;
 
-    // Pull in instance's block list, handling pagination
+    // Pull in instance's current block list, handling pagination
     do {
       response = await got(`${URLs.blocks}?page=${page}`, { cookieJar });
       $ = cheerio.load(response.body);
